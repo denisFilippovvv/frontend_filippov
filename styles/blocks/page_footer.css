@@ -1,0 +1,67 @@
+.page_footer {
+    background-color: #fff; /* Белый фон */
+    color: #000; /* Чёрный текст */
+    padding: 20px 0; /* Отступы сверху и снизу */
+    font-family: Arial, sans-serif; /* Шрифт */
+    border-top: 1px solid #ccc; /* Линия сверху */
+}
+
+.page_footer .container {
+    display: flex; /* Разделяем на два столбца */
+    justify-content: space-between; /* Пространство между колонками */
+    align-items: center; /* Центрирование по вертикали */
+    max-width: 1200px; /* Ограничение ширины содержимого */
+    margin: 0 auto; /* Центрирование содержимого */
+    padding: 0 20px; /* Отступы по бокам */
+}
+
+.page_footer .footer-left,
+.page_footer .footer-right {
+    flex: 1; /* Колонки занимают равное пространство */
+}
+
+.page_footer .footer-left {
+    text-align: left; /* Выравнивание текста влево */
+}
+
+.page_footer .footer-right {
+    text-align: right; /* Выравнивание текста вправо */
+}
+
+.page_footer .logo-footer p {
+    font-size: 18px; /* Размер текста для заголовка */
+    font-weight: bold; /* Полужирный текст */
+    margin: 0; /* Убираем отступы */
+}
+
+
+
+.page_footer .footer-links {
+    font-size: 18px;
+    margin-top: 160px;
+    font-weight: 700;
+}
+
+.page_footer .footer-links a {
+    color: #000; /* Чёрный цвет ссылок */
+    text-decoration: none; /* Убираем подчёркивание */
+    margin: 0 5px; /* Отступы между ссылками */
+}
+
+.page_footer .footer-links a:hover {
+    text-decoration: underline; /* Подчёркивание при наведении */
+}
+
+.logo-footer{
+    margin: 46px 0 20px 0;
+}
+
+.footer_left_text1{
+    color: #707070;
+    font-size: 19px;
+    margin: 0 0 42px;
+}
+.footer_left_text2{
+    font-size: 19px;
+    font-weight: 700;
+}

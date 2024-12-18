@@ -1,0 +1,78 @@
+.Candidates {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+
+    .Candidates-content {
+        text-align: center;
+        width: 100%;
+        .Candidates h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .Candidates p {
+            margin-bottom: 20px;
+            font-size: 40px;
+            margin: 40px 0 0 0 ;
+            color: #707070;
+        }
+
+        .can {
+            border: rgba(200, 198, 221, 0.75);
+            justify-content: center;
+            margin: 40px 0 -33px 0  ;
+            align-items: center;
+            padding: 15px 33px;
+            background-color: rgba(61,30,221,0.9);
+            color: white;
+            font-size: 16px;
+        }
+        .gradient {
+            position: relative;
+            width: 100%;
+
+        }
+        .gradient::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, black 50%, white 50%); /* Gradient: black at bottom, white at top */
+            z-index: -2;
+        }
+        .img{
+            width: 1500px;
+            display: block;
+            margin: 0 auto;
+            justify-content: center;
+            padding-bottom: 100px;
+        }
+    }
+}
+.everything-section {
+    text-align: center;
+    padding: 80px 0;
+    .img2{
+        width: 850px;
+    }
+}
+
+.Candidates h1 {
+    font-size: 60px;
+    margin-bottom: -22px;
+}
+
+.Candidates p {
+    margin-bottom: 20px;
+    font-size: 23px;
+    margin: 40px 0 0 0 ;
+    color: #707070;
+}
+
+.Candidates p:last-child{
+    font-size: 17px;
+    margin: 30px 0px 40px 0;
+}

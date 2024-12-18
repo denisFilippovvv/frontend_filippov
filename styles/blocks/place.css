@@ -1,0 +1,101 @@
+/* Общий стиль страницы */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Основной блок секции */
+.place {
+    text-align: center;
+    padding: 58px 20px;
+    background-color: #ffffff;
+}
+
+/* Контейнер для текста */
+.place .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.place .container p {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+}
+
+.place .container p:nth-child(1) {
+    font-weight: 700;
+    color: black;
+    font-size: 39px;
+    max-width: 1000px;
+}
+
+.place .container p:nth-child(2) {
+    margin-top: 19px;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.place .container h2 {
+    margin-top: 72px;
+    font-size: 39px;
+    font-weight: 700;
+    color: #222;
+}
+
+/* Изображение профиля */
+.image2 img {
+    max-width: 2009px;
+    height: 765px;
+    margin: 20px auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Секция с колонками */
+.columns {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1570px;
+    margin: 40px auto 0;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+/* Карточки */
+.feature {
+    flex: 1;
+    min-width: 250px;
+    max-width: 480px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.feature h3 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.feature p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.avatar{
+    height: 68px;
+    margin: 14px;
+}

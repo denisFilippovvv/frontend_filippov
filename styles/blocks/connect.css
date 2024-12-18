@@ -1,0 +1,54 @@
+/* Стили для секции Connect */
+.connect {
+    padding: 85px 65px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.connect .container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    gap: 20px;
+    align-items: center;
+}
+
+.connect .container img {
+    max-width: 100%;
+    height: 450px;
+    object-fit: contain;
+    border-radius: 8px;
+    flex: 1;
+}
+
+.connect .container div {
+    flex: 1;
+    text-align: left;
+    padding: 0 20px;
+}
+
+.connect .container h3 {
+    font-size: 49px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 23px;
+}
+
+.connect .container p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+}
+
+
+.quote-container {
+    align-items: center;
+    margin-top: 50px;
+    .img_dop1{
+        width: 70px;
+        margin-left: -1000px;
+        margin-top: -60px;
+    }
+}
