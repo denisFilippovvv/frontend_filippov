@@ -1,0 +1,17 @@
+# различные системные папки и файлы хостингов и операционных систем
+/cgi-bin/
+/awstats/
+/webstat/
+.DS_Store
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+/.idea/
+
+# исключаем всякое от node.js
+node_modules
+bower_components
+.grunt
+.npm
+.env
