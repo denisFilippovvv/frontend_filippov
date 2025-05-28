@@ -1,14 +1,34 @@
 'use strict';
-document.addEventListener('DOMContentLoaded', () => {
-  
-  let swiper; //инициализировал свайпер, чтобы в дальнешем можно было задавать ему функции при его "объявлении"
 
-  //FORM
+const swiper = new Swiper('.swiper', {
+    loop: true,
+    autoplay: {
+        delay: 10000,
+        disableOnInteraction: false
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+    }
+});
+window.swiperAPI = {
+    slideTo: (index) => swiper.slideToLoop(index),
+    getRealIndex: () => swiper.realIndex
+};
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // FORM
   document.querySelector('.header_button2').addEventListener('click', () => {
     const modalOverlay = document.getElementById('modalOverlay');
     modalOverlay.style.display = 'flex';
     document.body.classList.add('modal-open');
   });
+  
   document.querySelector('.header_button1').addEventListener('click', () => {
     const modalOverlay = document.getElementById('modalOverlay');
     modalOverlay.style.display = 'flex';
@@ -25,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('modalOverlay').addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
-        closeModal();
+      closeModal();
     }
   });
 
@@ -34,142 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModal();
   });
 
-
-
-  //SLIDER
-  swiper = new Swiper('.swiper', {
-    loop: true,
-    autoplay: {
-      delay: 10000,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    lazy: {
-      loadOnTransitionStart: true,
-      loadPrevNext: true,
-    },
-    on: {
-      slideChange: function () {
-        if (swiper && typeof swiper.realIndex !== 'undefined') {
-          const activeIndex = swiper.realIndex;
-          const columns = document.querySelectorAll('.columns .feature');
-          columns.forEach((col, index) => {
-            if (index === activeIndex) {
-              col.classList.add('active');
-            } else {
-              col.classList.remove('active');
-            }
-          });
-        } else {
-          console.error('Ошибка: объект swiper не инициализирован или realIndex недоступен.');
-        }
-      },
-    },
-  });
-
-
-  //работа с карточками
-  const cards = {
-    "card-1": {
-      title: "Professional Profile",
-      description: "We know finding the right job is stressful, so we’ve made it simple. It only takes a few minutes. Create a free portfolio on briefolio to show your best self and get discovered by recruiter",
-      image: "../img/professional-profil.png"
-    },
-    "card-2": {
-      title: "Best Portfolio",
-      description: "We know finding the right job is stressful, so we’ve made it simple. It only takes a few minutes. Create a free portfolio on briefolio to show your best self and get discovered by recruiter",
-      image: "../img/best-portfolio.jpg"
-    },
-    "card-3": {
-      title: "Powerful Resume",
-      description: "We know finding the right job is stressful, so we’ve made it simple. It only takes a few minutes. Create a free portfolio on briefolio to show your best self and get discovered by",
-      image: "../img/powerful-resume.jpg"
-    }
-  };
-
-  async function fetchCards() {
-    try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/comments');
-      if (!response.ok) {
-        throw new Error(`Ошибка HTTP: ${response.status}`);
-      }
-      const data = await response.json();
-      console.log('Данные, полученные с сервера:', data.slice(0, 3));
-      return data.slice(0, 3);
-    } catch (error) {
-      console.error('Ошибка при получении данных:', error);
-      return [];
-    }
-  }
-
-  async function insertCardsFromServer() {
-    const cardsData = await fetchCards();
-    const columnsContainer = document.querySelector('.columns');
-    if (!columnsContainer) {
-      console.error('Контейнер .columns не найден в HTML.');
-      return;
-    }
-    columnsContainer.innerHTML = '';
-    cardsData.forEach((card, index) => {
-      const cardHTML = `
-        <div class="feature" data-card-id="card-${index + 1}">
-          <h3>${card.name}</h3>
-          <p>${card.body}</p>
-        </div>
-      `;
-      columnsContainer.insertAdjacentHTML('beforeend', cardHTML);
-    });
-
-    const columns = document.querySelectorAll('.columns .feature');
-    columns.forEach((column, index) => {
-      column.addEventListener('click', () => {
-        columns.forEach(col => col.classList.remove('active'));
-        column.classList.add('active');
-        swiper.slideToLoop(index);
-      });
-    });
-
-    if (columns.length > 0) {
-      columns[0].classList.add('active');
-    }
-  }
-
-  insertCardsFromServer();
-
-  swiper.slideToLoop(0);
-
-
-  const columns = document.querySelectorAll('.columns .feature');
-    columns.forEach((column, index) => {
-      column.addEventListener('click', () => {
-        columns.forEach(col => col.classList.remove('active'));
-        column.classList.add('active');
-        swiper.slideToLoop(index);
-      });
-    });
-
-    if (columns.length > 0) {
-      columns[0].classList.add('active');
-    }
-
-
-  //PRELOADER
+  // PRELOADER
   window.addEventListener('load', function() {
     setTimeout(function() {
-    const preloader = document.querySelector('.preloader');
-    preloader.classList.add('hidden');
+      const preloader = document.querySelector('.preloader');
+      preloader.classList.add('hidden');
     }, 1000);
-    });
+  });
 
-
-
-  //SCROLLBAR PROBLEM
+  // SCROLLBAR PROBLEM
   function measureScrollbar() {
     const div = document.createElement('div');
     div.style.overflow = 'scroll';
@@ -185,34 +78,30 @@ document.addEventListener('DOMContentLoaded', () => {
     return scrollbarWidth;
   }
 
-  let scrollbarWidth;// Переменная для хранения ширины скроллбара
+  let scrollbarWidth;
+  scrollbarWidth = measureScrollbar();
 
-
-  document.addEventListener('DOMContentLoaded', () => {
-    scrollbarWidth = measureScrollbar();  // Измеряем ширину скроллбара сразу при загрузке
-    document.querySelector('.header_button2').addEventListener('click', handleLoginClick);
-    document.querySelector('.header_button1').addEventListener('click', handleLoginClick);
-  });
-  //раюота с модальным окном
-  function handleLoginClick(event) {
-    event.preventDefault();
-    const modalOverlay = document.getElementById('modalOverlay');
-      document.body.classList.add('modal-open');
-      modalOverlay.style.display = 'flex';
+  // Создаём контейнеры для карточек и слайдера, если их нет в разметке
+  if (!document.querySelector('.columns')) {
+      const columnsDiv = document.createElement('div');
+      columnsDiv.className = 'columns';
+      // Вставляем columns перед swiper, если он есть, иначе в main
+      const swiper = document.querySelector('.swiper');
+      if (swiper && swiper.parentNode) {
+          swiper.parentNode.insertBefore(columnsDiv, swiper);
+      } else {
+          document.querySelector('main')?.appendChild(columnsDiv);
+      }
   }
-
-  function closeModal() {
-    const modalOverlay = document.getElementById('modalOverlay');
-    modalOverlay.style.display = 'none';
-    document.body.classList.remove('modal-open');
+  if (!document.querySelector('.swiper')) {
+      const swiperHtml = `
+          <div class="swiper">
+              <div class="swiper-wrapper"></div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+          </div>
+      `;
+      document.querySelector('main')?.insertAdjacentHTML('beforeend', swiperHtml);
   }
-  document.querySelector('.cancel-button').addEventListener('click', closeModal);
-  document.getElementById('modalOverlay').addEventListener('click', (event) => {
-    if (event.target === event.currentTarget) {
-      closeModal();
-    }
-  });
-
-
-
 });
